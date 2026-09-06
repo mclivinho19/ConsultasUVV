@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "uuid-consultas-uvv",
+		"name": "ConsultasUVV API",
+		"description": "Coleção para testar os endpoints do Sistema de Gestão de Consultas UVV.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Register (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Nome",
+									"value": "Maria Silva",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "maria@example.com",
+									"type": "text"
+								},
+								{
+									"key": "Senha",
+									"value": "Senha123!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Account/Register",
+							"host": ["{{baseUrl}}"],
+							"path": ["Account", "Register"]
+						},
+						"description": "Cadastra um novo usuário. Se bem-sucedido, redireciona (302) para /Consultas. É necessário lidar com cookies."
+					},
+					"response": []
+				},
+				{
+					"name": "Login (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "maria@example.com",
+									"type": "text"
+								},
+								{
+									"key": "senha",
+									"value": "Senha123!",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Account/Login",
+							"host": ["{{baseUrl}}"],
+							"path": ["Account", "Login"]
+						},
+						"description": "Autentica o usuário. Em caso de sucesso, define um cookie de autenticação e redireciona para /Consultas."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout (POST)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Account/Logout",
+							"host": ["{{baseUrl}}"],
+							"path": ["Account", "Logout"]
+						},
+						"description": "Encerra a sessão. Requer cookie de autenticação e token anti-CSRF (se presente)."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"item": [
+				{
+					"name": "Index (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Consultas",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas"]
+						},
+						"description": "Lista as consultas do usuário autenticado. Requer autenticação."
+					},
+					"response": []
+				},
+				{
+					"name": "Create (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Create",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Create"]
+						},
+						"description": "Retorna o formulário para criar consulta. Inclui token anti-CSRF no HTML."
+					},
+					"response": []
+				},
+				{
+					"name": "Create (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{csrfToken}}",
+								"type": "text",
+								"description": "Token anti-CSRF obtido da página GET Create"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Especialidade",
+									"value": "Cardiologia",
+									"type": "text"
+								},
+								{
+									"key": "DataHora",
+									"value": "2026-09-10T14:30",
+									"type": "text"
+								},
+								{
+									"key": "Descricao",
+									"value": "Consulta de rotina",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Create",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Create"]
+						},
+						"description": "Cria uma nova consulta. Necessário estar autenticado e enviar o token CSRF."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Edit/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Edit", "1"]
+						},
+						"description": "Obtém formulário de edição para consulta ID=1. Requer autenticação e ser dono da consulta."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{csrfToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Especialidade",
+									"value": "Dermatologia",
+									"type": "text"
+								},
+								{
+									"key": "DataHora",
+									"value": "2026-09-15T10:00",
+									"type": "text"
+								},
+								{
+									"key": "Descricao",
+									"value": "Avaliação de pele",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Edit/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Edit", "1"]
+						},
+						"description": "Atualiza a consulta ID=1. Necessário autenticação e token CSRF."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (GET)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Delete/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Delete", "1"]
+						},
+						"description": "Mostra página de confirmação de exclusão."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (POST)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestVerificationToken",
+								"value": "{{csrfToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "Id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/Consultas/Delete/1",
+							"host": ["{{baseUrl}}"],
+							"path": ["Consultas", "Delete", "1"]
+						},
+						"description": "Exclui a consulta ID=1. Necessário autenticação e token CSRF."
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5239",
+			"type": "string"
+		},
+		{
+			"key": "csrfToken",
+			"value": "",
+			"type": "string",
+			"description": "Preencher com o token obtido da página de formulário (input __RequestVerificationToken)."
+		}
+	]
+}

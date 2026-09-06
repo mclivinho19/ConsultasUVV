@@ -1,0 +1,30 @@
+@model ConsultasUVV.Models.Consulta
+@{
+    ViewData["Title"] = "Excluir Consulta";
+}
+
+<div class="card shadow-sm border-danger">
+    <div class="card-header bg-danger text-white">
+        <h4 class="mb-0"><i class="bi bi-trash me-2"></i>Excluir Consulta</h4>
+    </div>
+    <div class="card-body">
+        <div class="alert alert-warning">
+            <i class="bi bi-exclamation-triangle me-2"></i>Tem certeza que deseja excluir esta consulta? Esta ação não pode ser desfeita.
+        </div>
+        <dl class="row">
+            <dt class="col-sm-3">Especialidade</dt>
+            <dd class="col-sm-9">@Model.Especialidade</dd>
+            <dt class="col-sm-3">Data/Hora</dt>
+            <dd class="col-sm-9">@Model.DataHora.ToString("dd/MM/yyyy HH:mm")</dd>
+            <dt class="col-sm-3">Descrição</dt>
+            <dd class="col-sm-9">@(string.IsNullOrEmpty(Model.Descricao) ? "-" : Model.Descricao)</dd>
+        </dl>
+        <form asp-action="Delete" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-danger">Excluir Definitivamente</button>
+            </div>
+        </form>
+    </div>
+</div>

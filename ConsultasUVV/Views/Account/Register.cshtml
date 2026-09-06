@@ -1,0 +1,37 @@
+@model ConsultasUVV.Models.Usuario
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="bi bi-person-plus me-2"></i>Cadastro de Usuário</h4>
+            </div>
+            <div class="card-body">
+                <form asp-action="Register" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <div class="mb-3">
+                        <label asp-for="Nome" class="form-label"></label>
+                        <input asp-for="Nome" class="form-control" placeholder="Nome completo" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder="E-mail" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Senha" class="form-label"></label>
+                        <input asp-for="Senha" type="password" class="form-control" placeholder="Senha (mínimo 6 caracteres)" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Cadastrar</button>
+                </form>
+                <hr />
+                <p class="mb-0">Já tem conta? <a asp-action="Login">Faça login</a></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@model ConsultasUVV.Models.Consulta
+@{
+    ViewData["Title"] = "Editar Consulta";
+}
+
+<div class="card shadow-sm">
+    <div class="card-header bg-warning text-dark">
+        <h4 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Editar Consulta</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            <div class="mb-3">
+                <label asp-for="Especialidade" class="form-label"></label>
+                <input asp-for="Especialidade" class="form-control" />
+                <span asp-validation-for="Especialidade" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DataHora" class="form-label"></label>
+                <input asp-for="DataHora" type="datetime-local" class="form-control" />
+                <span asp-validation-for="DataHora" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Descricao" class="form-label"></label>
+                <textarea asp-for="Descricao" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-warning">Salvar Alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
