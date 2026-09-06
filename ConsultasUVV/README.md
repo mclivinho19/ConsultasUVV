@@ -4,14 +4,13 @@ Aplicação web desenvolvida em **ASP.NET Core MVC** com **Entity Framework Core
 
 ### Desenvolvido por:
 
-- Nome do Aluno 1
-- Nome do Aluno 2
+- GUIlherme Marques Rezende
 
 ---
 
 ## 🎥 Vídeo Demonstrativo
 
-Link para o vídeo no YouTube (substituir pelo link real)
+https://youtu.be/rZQX1RbzJ2o?is=vXvyglUiB7auTLDZ
 
 ---
 
